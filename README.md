@@ -133,7 +133,6 @@ Show actual posts/videos under each trend
 
 
 
-<img width="1509" height="940" alt="image" src="https://github.com/user-attachments/assets/33d5d2e0-7476-4371-a2b2-80cb2c1a7686" />
 
 🎥 Loom Walkthrough
 
@@ -141,7 +140,8 @@ Show actual posts/videos under each trend
 
 📸 Screenshot
 
-(Add screenshot of app here)
+<img width="1509" height="940" alt="image" src="https://github.com/user-attachments/assets/33d5d2e0-7476-4371-a2b2-80cb2c1a7686" />
+
 
 ✅ Summary
 
