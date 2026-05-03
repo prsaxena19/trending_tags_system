@@ -3,7 +3,7 @@
 📊 ShareChat APM Assignment — Trending Tags System
 🔗 Live Demo
 
-([Add your deployed Streamlit URL here](https://trendingtagssystem-prash.streamlit.app/))
+([Streamlit URL here](https://trendingtagssystem-prash.streamlit.app/))
 
 📦 Repository Contents
 sharechat_trending.ipynb — Data pipeline for generating trends
