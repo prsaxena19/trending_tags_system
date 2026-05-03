@@ -3,7 +3,7 @@
 📊 ShareChat APM Assignment — Trending Tags System
 🔗 Live Demo
 
-([Streamlit URL here](https://trendingtagssystem-prash.streamlit.app/))
+[Hosted app link](https://trendingtagssystem-prash.streamlit.app/)
 
 📦 Repository Contents
 sharechat_trending.ipynb — Data pipeline for generating trends
@@ -136,7 +136,7 @@ Show actual posts/videos under each trend
 
 🎥 Loom Walkthrough
 
-[Loom link here](https://www.loom.com/share/7a0a52f720234c44b4d1454f9f8207ea)
+[video walkthrough](https://www.loom.com/share/f63625c31c3b4e16b3e094f775f5b835)
 
 📸 Screenshot
 
