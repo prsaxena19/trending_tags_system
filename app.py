@@ -35,36 +35,31 @@ user_interest = st.sidebar.selectbox(
 def personalize_score(row):
     score = row["score"]
 
-    category = str(row["category"]).lower()
-    tag = str(row["tag"]).lower()
+    category = str(row["category"]).strip()
+    tag = str(row["tag"])
 
-    # 🎯 Strong interest mapping
-    interest_map = {
-        "क्रिकेट": ["cricket", "ipl", "match"],
-        "समाचार": ["news", "election", "government"],
-        "मनोरंजन": ["movie", "film", "ott", "actor"],
-        "टेक": ["tech", "ai", "startup"],
-        "मौसम": ["rain", "weather", "heat"]
+    # 🎯 1. PRIMARY: Category match (most reliable)
+    if category == user_interest:
+        score *= 3.0   # strong boost → ensures reorder
+
+    # 🎯 2. SECONDARY: Hindi keyword match (optional boost)
+    hindi_keywords = {
+        "क्रिकेट": ["आईपीएल", "क्रिकेट", "मैच"],
+        "समाचार": ["चुनाव", "सरकार", "खबर"],
+        "मनोरंजन": ["फिल्म", "अभिनेता", "ओटीटी"],
+        "टेक": ["टेक", "एआई", "स्टार्टअप"],
+        "मौसम": ["बारिश", "गर्मी", "मौसम"]
     }
 
-    
+    if user_interest in hindi_keywords:
+        if any(k in tag for k in hindi_keywords[user_interest]):
+            score *= 1.5
 
-    # 🔥 BIG boost (so it’s visible)
-    for key, keywords in interest_map.items():
-        if user_interest == key:
-            if any(k in tag for k in keywords):
-                score *= 2.0   # strong boost
-
-    # 📍 Location boost
-    if user_location.lower() in tag:
-        score *= 1.5
-    #cricket boost
-    if "आईपीएल" in tag or "क्रिकेट" in tag:
-        if user_interest == "क्रिकेट":
-            score *= 2
+    # 📍 3. Location boost (keep small)
+    if user_location.lower() in tag.lower():
+        score *= 1.2
 
     return score
-
 df["personalized_score"] = df.apply(personalize_score, axis=1)
 print(df[["tag", "score", "personalized_score"]].head(10))
 df = df.sort_values(by="personalized_score", ascending=False)
