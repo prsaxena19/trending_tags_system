@@ -35,18 +35,40 @@ user_interest = st.sidebar.selectbox(
 def personalize_score(row):
     score = row["score"]
 
-    # Interest boost
-    if user_interest in row["category"]:
-        score *= 1.3
+    category = str(row["category"]).lower()
+    tag = str(row["tag"]).lower()
 
-    # Location boost (simple heuristic)
-    if user_location.lower() in row["tag"].lower():
-        score *= 1.2
+    # 🎯 Strong interest mapping
+    interest_map = {
+        "क्रिकेट": ["cricket", "ipl", "match"],
+        "समाचार": ["news", "election", "government"],
+        "मनोरंजन": ["movie", "film", "ott", "actor"],
+        "टेक": ["tech", "ai", "startup"],
+        "मौसम": ["rain", "weather", "heat"]
+    }
+
+    
+
+    # 🔥 BIG boost (so it’s visible)
+    for key, keywords in interest_map.items():
+        if user_interest == key:
+            if any(k in tag for k in keywords):
+                score *= 2.0   # strong boost
+
+    # 📍 Location boost
+    if user_location.lower() in tag:
+        score *= 1.5
+    #cricket boost
+    if "आईपीएल" in tag or "क्रिकेट" in tag:
+    if user_interest == "क्रिकेट":
+        score *= 2
 
     return score
 
 df["personalized_score"] = df.apply(personalize_score, axis=1)
+print(df[["tag", "score", "personalized_score"]].head(10))
 df = df.sort_values(by="personalized_score", ascending=False)
+
 
 # -------------------------
 # SESSION STATE
@@ -78,6 +100,7 @@ if st.session_state.selected_tag is None:
                     <b>{row['tag']}</b><br>
                     <span style="color:gray;">
                         {row['category']} | 🔥 {int(row['personalized_score'])}
+                        🔥 {row['score']} → {int(row['personalized_score'])} #score added
                     </span>
                 </div>
             """, unsafe_allow_html=True)
