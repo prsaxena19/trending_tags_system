@@ -60,8 +60,8 @@ def personalize_score(row):
         score *= 1.5
     #cricket boost
     if "आईपीएल" in tag or "क्रिकेट" in tag:
-    if user_interest == "क्रिकेट":
-        score *= 2
+        if user_interest == "क्रिकेट":
+            score *= 2
 
     return score
 
