@@ -136,7 +136,7 @@ Show actual posts/videos under each trend
 
 🎥 Loom Walkthrough
 
-(Add your Loom link here)
+[Loom link here](https://www.loom.com/share/7a0a52f720234c44b4d1454f9f8207ea)
 
 📸 Screenshot
 
