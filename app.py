@@ -57,7 +57,7 @@ def personalize_score(row):
 
     # 📍 3. Location boost (keep small)
     if user_location.lower() in tag.lower():
-        score *= 1.2
+        score *= 2
 
     return score
 df["personalized_score"] = df.apply(personalize_score, axis=1)
